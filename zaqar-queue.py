@@ -4,8 +4,8 @@ import argparse
 import os
 import sys
 
-from zaqarclient.queues.v2 import client as zq_client
 from keystoneclient.v2_0 import client as ks_client
+from zaqarclient.queues.v2 import client as zq_client
 
 MESSAGE = {
     "body": {
@@ -46,6 +46,7 @@ def receive_messages(client, args):
                 print('Received message: {} {}'.format(msg, msg.body))
                 msg.delete()
             if not args.receive_forever:
+                print('Done receiving messages')
                 break
     except KeyboardInterrupt as e:
         pass
